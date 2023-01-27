@@ -23,6 +23,7 @@ class MyEjercicio13 extends StatefulWidget {
 }
 
 class _MyEjercicio13State extends State<MyEjercicio13> {
+  TextEditingController controller = TextEditingController();
   int number = Random().nextInt(100);
   int? usernumber;
 
@@ -51,13 +52,12 @@ class _MyEjercicio13State extends State<MyEjercicio13> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     TextField(
+                      controller: controller,
                       textAlign: TextAlign.center,
                       decoration: InputDecoration(
                         hintText: 'Number',
                       ),
-                      onChanged: (value) => setState(() {
-                        usernumber = int.parse(value);
-                      }),
+                      keyboardType: TextInputType.number,
                     ),
                   ],
                 ),
@@ -85,6 +85,7 @@ Si se acierta el número el juego volverá a comenzar cambiando el valor del nú
 a adivinar.
 */
   void validar() {
+    usernumber = int.parse(controller.text);
     setState(() {
       if (usernumber == number) {
         showAlertDialog(context, 'ENHURABUENA! Ganó el juego');
