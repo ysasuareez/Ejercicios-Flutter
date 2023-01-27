@@ -20,7 +20,13 @@ class MyEjercicio12 extends StatefulWidget {
   State<MyEjercicio12> createState() => _MyEjercicio12State();
 }
 
+/*
+username= ysabel
+password= ysabel
+*/
 class _MyEjercicio12State extends State<MyEjercicio12> {
+  TextEditingController controllerUser = TextEditingController();
+  TextEditingController controllerPass = TextEditingController();
   var username = '';
   var password = '';
   bool passwordVisible = true;
@@ -46,6 +52,15 @@ class _MyEjercicio12State extends State<MyEjercicio12> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     TextField(
+                      controller: controllerUser,
+                      keyboardType: TextInputType.text,
+                      decoration: InputDecoration(
+                        prefixIcon: Icon(Icons.person, color: Colors.grey),
+                        hintText: 'Username',
+                      ),
+                    ),
+                    TextField(
+                      controller: controllerPass,
                       keyboardType: TextInputType.text,
                       obscureText: passwordVisible,
                       decoration: InputDecoration(
@@ -61,9 +76,6 @@ class _MyEjercicio12State extends State<MyEjercicio12> {
                               }));
                             },
                           )),
-                      onChanged: (value) => setState(() {
-                        password = value;
-                      }),
                     ),
                   ],
                 ),
@@ -94,6 +106,9 @@ de mostrarlo tambien por la consola. Para cerrar el Alert solo habrá que
 pulsar fuera de él
 */
   void validar() {
+    username = controllerUser.text;
+    password = controllerPass.text;
+
     var resultado = null;
     setState(() {
       if (username.isEmpty ||
